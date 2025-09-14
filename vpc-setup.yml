@@ -195,4 +195,4 @@
           pubRT_id: "{{ pubRT_id }}"
           NATGWid: "{{ NATGWid }}"
           privRTid: "{{ privRTid }}"
-      when: vpcout.changed
+    
