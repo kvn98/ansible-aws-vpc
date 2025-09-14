@@ -54,9 +54,9 @@
             assign_public_ip: yes
           exact_count: 1
           filters:
-            tag:Name: "Bastion-Host"
-            tag:Project: vprofile
-            tag:Owner: "Devops Team"
+            "tag:Name": "Bastion-Host"
+            "tag:Project": vprofile
+            "tag:Owner": "Devops Team"
           tags:
           Name: "Bastion-Host"
           Project: vprofile
