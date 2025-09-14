@@ -40,25 +40,25 @@
 
     - name: Creating bastion host
       amazon.aws.ec2_instance:
-        key_name: vprofile-key
-        group_id: "{{ BastionSG_out.group_id }}"
-        instance_type: t2.micro
-        image:
-           image_id: "{{ bastion_ami }}"
-        wait: yes
-        region: "{{ region }}"
-        wait_timeout: 300
-
-        vpc_subnet_id: "{{ pubsub1_id }}"
-        assign_public_ip: yes
-        exact_count: 1
-        count_tag:
+          name: "Bastion-Host"
+          key_name: vprofile-key
+          security_groups: ["{{ BastionSG_out.group_id }}"]
+          instance_type: t2.micro
+          image:
+            image_id: "{{ bastion_ami }}"
+          wait: yes
+          region: "{{ region }}"
+          wait_timeout: 500
+          vpc_subnet_id: "{{ pubsub1_id }}"
+          network:
+            assign_public_ip: yes
+          exact_count: 1
+          filters:
+            tag:Name: "Bastion-Host"
+            tag:Project: vprofile
+            tag:Owner: "Devops Team"
+          tags:
           Name: "Bastion-Host"
           Project: vprofile
           Owner: "Devops Team"
-
-        instance_tags:
-          Name: "Bastion-Host"
-          Project: vprofile
-          Owner: "Devops Team"
-      register: bastinHost_out
+      register: bastionHost_out
