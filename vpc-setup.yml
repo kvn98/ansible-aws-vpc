@@ -164,3 +164,35 @@
         - pubRT_out.route_table.id
         - NATGW_out.nat_gateway_id
         - privRT_out.route_table.id
+
+    - set_fact:
+        vpc_id: "{{ vpcout.vpc.id }}"
+        pubsub1_id: "{{ pubsub1_out.subnet.id }}"
+        pubsub2_id: "{{ pubsub2_out.subnet.id }}"
+        pubsub3_id: "{{ pubsub3_out.subnet.id }}"
+        privsub1_id: "{{ privsub1_out.subnet.id }}"
+        privsub2_id: "{{ privsub2_out.subnet.id }}"
+        privsub3_id: "{{ privsub3_out.subnet.id }}"
+        igw_id: "{{ igw_out.gateway_id }}"
+        pubRT_id: "{{ pubRT_out.route_table.id }}"
+        NATGWid: "{{ NATGW_out.nat_gateway_id }}"
+        privRTid: "{{ privRT_out.route_table.id }}"
+        cacheable: yes
+
+    - name: Create variable file for vpc outputs
+      copy:
+        dest: "./vars/outputs_vars"
+        content: |
+          ---
+          vpc_id: "{{ vpc_id }}"
+          pubsub1_id: "{{ pubsub1_id }}"
+          pubsub2_id: "{{ pubsub2_id }}"
+          pubsub3_id: "{{ pubsub3_id }}"
+          privsub1_id: "{{ privsub1_id }}"
+          privsub2_id: "{{ privsub2_id }}"
+          privsub3_id: "{{ privsub3_id }}"
+          igw_id: "{{ igw_id }}"
+          pubRT_id: "{{ pubRT_id }}"
+          NATGWid: "{{ NATGWid }}"
+          privRTid: "{{ privRTid }}"
+      when: vpcout.changed
