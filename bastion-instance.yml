@@ -58,7 +58,7 @@
             "tag:Project": vprofile
             "tag:Owner": "Devops Team"
           tags:
-          Name: "Bastion-Host"
-          Project: vprofile
-          Owner: "Devops Team"
+            Name: "Bastion-Host"
+            Project: vprofile
+            Owner: "Devops Team"
       register: bastionHost_out
