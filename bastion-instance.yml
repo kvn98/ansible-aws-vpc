@@ -37,6 +37,10 @@
             to_port: 22
             cidr_ip: "{{ MYIP }}"
       register: BastionSG_out
+    
+    - name: Debug bastion_ami variable
+      debug:
+        var: bastion_ami
 
     - name: Creating bastion host
       amazon.aws.ec2_instance:
