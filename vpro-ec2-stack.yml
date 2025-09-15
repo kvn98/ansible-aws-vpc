@@ -145,7 +145,7 @@
         name: "rmq01"
         key_name: vprokey
         instance_type: t2.micro
-        image_id: "{{ rabbitmq_ami }}"
+        image_id: "{{ rmq_ami }}"
         wait: yes
         wait_timeout: 300
         security_groups: ["{{ vproStackSG_out.group_id }}"]
