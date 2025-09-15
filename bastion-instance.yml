@@ -48,8 +48,7 @@
           key_name: vprofile-key
           security_groups: ["{{ BastionSG_out.group_id }}"]
           instance_type: t2.micro
-          image:
-            image_id: "{{ bastion_ami }}"
+          image_id: "{{ bastion_ami }}"  
           wait: yes
           region: "{{ region }}"
           wait_timeout: 500
