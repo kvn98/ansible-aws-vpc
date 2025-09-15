@@ -65,3 +65,10 @@
             Project: vprofile
             Owner: "Devops Team"
       register: bastionHost_out
+
+    - name: Insert/update "BastionSGid" variable in vars/vpc-outputs_vars file
+      blockinfile:
+        path: vars/vpc-outputs_vars
+        backup: yes
+        block: |
+          BastionSGid : "{{ BastionSG_out.group_id }}"
