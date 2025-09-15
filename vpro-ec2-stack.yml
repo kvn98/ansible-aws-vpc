@@ -70,21 +70,23 @@
 
     - name: Creating Nginx web01
       amazon.aws.ec2_instance:
+        name: "web01"
         key_name: vprokey
         instance_type: t2.micro
         image_id: "{{ nginx_ami }}"
         wait: yes
         wait_timeout: 300
-        group_id: "{{ vproStackSG_out.group_id }}"
+        security_groups: ["{{ vproStackSG_out.group_id }}"]
         vpc_subnet_id: "{{ privsub1_id }}"
-        assign_public_ip: yes
+        network:
+          assign_public_ip: yes
         exact_count: 1
-        count_tag: 
-          Name: "web01"
-          Project: "Vprofile"
-          Owner: DevOps Team
+        filters:
+          "tag:Name": "web01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
         region: "{{ region }}"
-        instance_tags:
+        tags:
           Name: web01
           Project: Vprofile
           Owner: DevOps Team
@@ -92,21 +94,23 @@
 
     - name: Creating tomcat app01
       amazon.aws.ec2_instance:
+        name: "app01"
         key_name: vprokey
         instance_type: t2.micro
         image_id: "{{ tomcat_ami }}"
         wait: yes
         wait_timeout: 300
-        group_id: "{{ vproStackSG_out.group_id }}"
+        security_groups: ["{{ vproStackSG_out.group_id }}"]
         vpc_subnet_id: "{{ privsub1_id }}"
-        assign_public_ip: yes
+        network:
+          assign_public_ip: yes
         exact_count: 1
-        count_tag: 
-          Name: "app01"
-          Project: "Vprofile"
-          Owner: DevOps Team
+        filters:
+          "tag:Name": "app01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
         region: "{{ region }}"
-        instance_tags:
+        tags:
           Name: app01
           Project: Vprofile
           Owner: DevOps Team
@@ -114,20 +118,23 @@
 
     - name: Creating memcache mc01
       amazon.aws.ec2_instance:
+        name: "mc01"
         key_name: vprokey
         instance_type: t2.micro
         image_id: "{{ memcache_ami }}"
         wait: yes
         wait_timeout: 300
-        group_id: "{{ vproStackSG_out.group_id }}"
+        security_groups: ["{{ vproStackSG_out.group_id }}"]
         vpc_subnet_id: "{{ privsub1_id }}"
+        network:
+          assign_public_ip: yes
         exact_count: 1
-        count_tag: 
-          Name: "mc01"
-          Project: "Vprofile"
-          Owner: DevOps Team
+        filters:
+          "tag:Name": "mc01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
         region: "{{ region }}"
-        instance_tags:
+        tags:
           Name: mc01
           Project: Vprofile
           Owner: DevOps Team
@@ -135,20 +142,23 @@
 
     - name: Creating RabbitMQ rmq01
       amazon.aws.ec2_instance:
+        name: "rmq01"
         key_name: vprokey
         instance_type: t2.micro
         image_id: "{{ rabbitmq_ami }}"
         wait: yes
         wait_timeout: 300
-        group_id: "{{ vproStackSG_out.group_id }}"
+        security_groups: ["{{ vproStackSG_out.group_id }}"]
         vpc_subnet_id: "{{ privsub1_id }}"
+        network:
+          assign_public_ip: yes
         exact_count: 1
-        count_tag: 
-          Name: "rmq01"
-          Project: "Vprofile"
-          Owner: DevOps Team
+        filters:
+          "tag:Name": "rmq01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
         region: "{{ region }}"
-        instance_tags:
+        tags:
           Name: rmq01
           Project: Vprofile
           Owner: DevOps Team
@@ -156,20 +166,23 @@
 
     - name: Creating Mysql db01
       amazon.aws.ec2_instance:
+        name: "db01"
         key_name: vprokey
         instance_type: t2.micro
         image_id: "{{ mysql_ami }}"
         wait: yes
         wait_timeout: 300
-        group_id: "{{ vproStackSG_out.group_id }}"
+        security_groups: ["{{ vproStackSG_out.group_id }}"]
         vpc_subnet_id: "{{ privsub1_id }}"
+        network:
+          assign_public_ip: yes
         exact_count: 1
-        count_tag:
-          Name: "db01"
-          Project: "Vprofile"
-          Owner: DevOps Team
+        filters:
+          "tag:Name": "db01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
         region: "{{ region }}"
-        instance_tags:
+        tags:
           Name: db01
           Project: Vprofile
           Owner: DevOps Team
