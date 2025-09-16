@@ -191,15 +191,7 @@
     - debug:
         var: db01_out.instances[0].instance_id
 
-    - name: Debug subnet zones
-      debug:
-        msg:
-          - "pubsub1 AZ: {{ pubsub1_out.subnet.availability_zone }}"
-          - "pubsub2 AZ: {{ pubsub2_out.subnet.availability_zone }}"  
-          - "pubsub3 AZ: {{ pubsub3_out.subnet.availability_zone }}"
-          - "pubsub1 ID: {{ pubsub1_id }}"
-          - "pubsub2 ID: {{ pubsub2_id }}"
-          - "pubsub3 ID: {{ pubsub3_id }}"
+
 
     - name: Create Classic Load Balancer
       amazon.aws.elb_classic_lb:
@@ -212,7 +204,7 @@
         subnets:
           - "{{ pubsub1_id }}"
           - "{{ pubsub2_id }}"
-          - "{{ pubsub3_id }}"
+
         listeners:
           - protocol: http
             load_balancer_port: 80
