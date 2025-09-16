@@ -208,7 +208,7 @@
             load_balancer_port: 80
             instance_protocol: http
             instance_port: 80
-        instances:
+        instances_ids:
         - "{{ web01_out.instances[0].instance_id }}"
       register: elb_out
 
