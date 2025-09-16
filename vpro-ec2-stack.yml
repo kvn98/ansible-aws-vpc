@@ -191,8 +191,8 @@
     - debug:
         var: db01_out.instances[0].instance_id
 
-    - local_action:
-        module: amazon.aws.elb
+    - name: Create Classic Load Balancer
+      amazon.aws.ec2_elb:
         name: "vprofile-elb"
         state: present
         region: "{{ region }}"
@@ -209,9 +209,10 @@
             instance_protocol: http
             instance_port: 80
         instances:
-          - "{{ web01_out.instances[0].instance_id }}"
-      
-    - name: Insert/Update Hosts private IP in & Name in file provision-stack/group-vars/hostsip
+        - "{{ web01_out.instances[0].instance_id }}"
+      register: elb_out
+
+    - name: Insert/Update Hosts private IP & Name in file provision-stack/group-vars/hostsip
       blockinfile:
         path: provision-stack/group_vars/hostsip
         block: |
@@ -221,7 +222,7 @@
           mc01_ip: "{{ mc01_out.instances[0].private_ip }}"
           rmq01_ip: "{{ rmq01_out.instances[0].private_ip }}"
           db01_ip: "{{ db01_out.instances[0].private_ip }}"
-          
+      
     - name: Copy login Key to Provision_stack directory
       copy:
         src: ./loginkey_vpro.pem
