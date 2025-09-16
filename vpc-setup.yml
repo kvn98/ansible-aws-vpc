@@ -195,4 +195,5 @@
           pubRT_id: "{{ pubRT_id }}"
           NATGWid: "{{ NATGWid }}"
           privRTid: "{{ privRTid }}"
+          region: "{{ region }}"
     
