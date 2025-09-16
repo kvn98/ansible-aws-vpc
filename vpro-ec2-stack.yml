@@ -192,7 +192,7 @@
         var: db01_out.instances[0].instance_id
 
     - name: Create Classic Load Balancer
-      amazon.aws.ec2_elb:
+      amazon.aws.elb_classic_lb:
         name: "vprofile-elb"
         state: present
         region: "{{ region }}"
